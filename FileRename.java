@@ -30,13 +30,25 @@ public class FileRename {
 			//If the current file is a file
 			if(file[i].isFile() && !file[i].getName().contains("_")) {
 				
+				//Loop through each type of visa
 				for(String s : type) {
 					
-					String[] words = file[i].getName().split(" ");
-					
+					//If that word contains a visa type
 					if(file[i].getName().contains(s)) {
 						
-						dest = new File(file[i].getParent() + "\\" + words[0].toLowerCase() + "_" + s.toLowerCase() + "_pack.pdf");
+						String country;
+						
+						//Get position of the visa type
+						int countryPosition = file[i].getName().indexOf(s);
+						
+						//Assign substring from start until visa type to variable country
+						if(countryPosition >= 0) {
+							
+							country = file[i].getName().substring(0, countryPosition);
+							
+						} else { country = null; }
+						
+						dest = new File(file[i].getParent() + "\\" + country.replace(" ", "").replaceAll("[^a-zA-Z0-9]+","").toLowerCase() + "_" + s.toLowerCase() + "_pack.pdf");
 						
 					}
 				}
@@ -71,9 +83,9 @@ public class FileRename {
 	
 	//C:\Users\James\Desktop\Testing Files\Files			C:\Users\James\Desktop\downloads
 	
-	//Afghanistan Tourist Visa Application Pack
-	//Angola Tourist Visa Application Pack
+	//Antigua & Barbuda Tourist Visa Application Pack
 	//Armenia Business Visa Application Pack
+	//South Africa Media Visa Application Pack
 	
 	public static void main(String[] args) {
 		
