@@ -14,9 +14,9 @@ public class FileRename {
 	private static String[] type = {"Tourist", "Business", "Media", "Study", "eVisa"};
 	private static File dest;
 	
-	private static Boolean error;
-	
 	public static void getFileName(String path) {
+		
+		boolean error = false;
 		
 		//Create file variable using path given by user
 		File root = new File(path);
@@ -38,13 +38,10 @@ public class FileRename {
 						
 						dest = new File(file[i].getParent() + "\\" + words[0].toLowerCase() + "_" + s.toLowerCase() + "_pack.pdf");
 						
-						error = false;
-						
 					}
 				}
 				
 				file[i].renameTo(dest);
-				System.out.println("Success.");
 				
 			} else {
 				
@@ -63,24 +60,20 @@ public class FileRename {
 			
 			System.err.println("Error. No valid files in file location. Please enter a valid file location.");
 			
-		} else if(error == false) {
+		} 
+		
+		if(error == false) {
 			
 			System.out.println("Success.");
 			
 		}
 	}
 	
-	public static String renameFile(String filename, String extension) {
-		
-		String[] words = filename.split(" ");
-		
-		String filenameUpdated = words[0].toLowerCase() + extension;
-		
-		return filenameUpdated;
-		
-	}
-	
 	//C:\Users\James\Desktop\Testing Files\Files			C:\Users\James\Desktop\downloads
+	
+	//Afghanistan Tourist Visa Application Pack
+	//Angola Tourist Visa Application Pack
+	//Armenia Business Visa Application Pack
 	
 	public static void main(String[] args) {
 		
